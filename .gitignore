@@ -1,0 +1,22 @@
+# Archivos de video grandes (exceden el límite de GitHub)
+assets/media/*.mp4
+assets/media/*.mkv
+assets/media/*.mov
+assets/media/*.avi
+
+# Archivos grandes en general
+*.mp4
+*.mkv
+*.mov
+*.avi
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+

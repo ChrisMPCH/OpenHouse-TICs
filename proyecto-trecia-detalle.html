@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRECIA - Detalle del Proyecto</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #1e3a5f;
+        background-color: #fafafa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: #092140;
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .back-button {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+
+      .back-button:hover {
+        color: #ff6b35;
+      }
+
+      /* Project Detail Section */
+      .project-detail {
+        padding: 40px 20px;
+      }
+
+      .project-header {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-title {
+        font-size: 36px;
+        color: #1e3a5f;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .project-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        background: #1e3a5f;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .project-description {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .section-title {
+        font-size: 24px;
+        color: #1e3a5f;
+        margin-bottom: 20px;
+        font-weight: 600;
+        border-bottom: 2px solid #ff6b35;
+        padding-bottom: 10px;
+      }
+
+      .project-description p {
+        color: #444;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      .features-list li {
+        padding: 10px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #444;
+        font-size: 16px;
+      }
+
+      .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #ff6b35;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      /* Code Section */
+      .code-section {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 8px;
+        padding: 20px;
+        overflow-x: auto;
+        margin-top: 20px;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .code-block code {
+        color: #d4d4d4;
+      }
+
+      .code-block .keyword {
+        color: #569cd6;
+      }
+
+      .code-block .string {
+        color: #ce9178;
+      }
+
+      .code-block .comment {
+        color: #6a9955;
+      }
+
+      .code-block .function {
+        color: #dcdcaa;
+      }
+
+      /* Tech Stack */
+      .tech-stack {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .tech-item {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .tech-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .tech-item i {
+        font-size: 36px;
+        color: #1e3a5f;
+        margin-bottom: 10px;
+      }
+
+      .tech-item h4 {
+        color: #1e3a5f;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1e3a5f;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      footer p {
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        .project-title {
+          font-size: 28px;
+        }
+
+        .project-header,
+        .project-description,
+        .code-section,
+        .tech-stack {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">Instituto Tecnológico de Toluca</div>
+          <a href="Home.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section class="project-detail">
+      <div class="container">
+        <div class="project-header">
+          <h1 class="project-title">TRECIA</h1>
+          <p class="project-subtitle">
+            Sistema de gestión hospitalaria desarrollado en JAVA para la administración integral de hospitales
+          </p>
+          <div class="project-tags">
+            <span class="tag">Java</span>
+            <span class="tag">POO</span>
+            <span class="tag">Swing</span>
+            <span class="tag">Sistema de Gestión</span>
+            <span class="tag">Tercer Semestre</span>
+          </div>
+        </div>
+
+        <div class="project-description">
+          <h2 class="section-title">Descripción del Proyecto</h2>
+          <p>
+            TRECIA es un sistema de gestión hospitalaria desarrollado en JAVA utilizando Programación Orientada a Objetos (POO). 
+            Este proyecto fue creado durante el tercer semestre de la carrera y tiene como objetivo facilitar la administración 
+            de diferentes aspectos de un hospital, desde la gestión de pacientes hasta el control de recursos médicos.
+          </p>
+          <p>
+            El sistema implementa los principios fundamentales de POO como encapsulamiento, herencia, polimorfismo y abstracción, 
+            demostrando la capacidad de diseñar y desarrollar software robusto y escalable para entornos críticos como el sector salud.
+          </p>
+
+          <h3 style="margin-top: 30px; margin-bottom: 15px; color: #1e3a5f">
+            Características principales:
+          </h3>
+          <ul class="features-list">
+            <li>Gestión de pacientes y expedientes médicos</li>
+            <li>Control de citas y consultas médicas</li>
+            <li>Administración de personal médico y administrativo</li>
+            <li>Gestión de inventario de medicamentos y equipos</li>
+            <li>Interfaz gráfica desarrollada con Java Swing</li>
+            <li>Arquitectura basada en principios de POO</li>
+            <li>Sistema de validación de datos</li>
+            <li>Manejo de excepciones y errores</li>
+          </ul>
+        </div>
+
+        <div class="tech-stack">
+          <h2 class="section-title">Tecnologías Utilizadas</h2>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <i class="fab fa-java"></i>
+              <h4>Java</h4>
+              <p>Lenguaje de programación</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-cube"></i>
+              <h4>POO</h4>
+              <p>Programación Orientada a Objetos</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-window-maximize"></i>
+              <h4>Java Swing</h4>
+              <p>Interfaz gráfica</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-database"></i>
+              <h4>Archivos/BD</h4>
+              <p>Persistencia de datos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-section">
+          <h2 class="section-title">Código del Proyecto</h2>
+          <p style="margin-bottom: 20px; color: #444">
+            A continuación se muestra un ejemplo de la estructura del código utilizando POO:
+          </p>
+
+          <div class="code-block">
+            <pre><code><span class="comment">// Clase principal Paciente - Ejemplo de encapsulamiento</span>
+<span class="keyword">public class</span> <span class="function">Paciente</span> {
+    <span class="keyword">private</span> String nombre;
+    <span class="keyword">private</span> String curp;
+    <span class="keyword">private</span> String fechaNacimiento;
+    <span class="keyword">private</span> String telefono;
+    
+    <span class="comment">// Constructor</span>
+    <span class="keyword">public</span> <span class="function">Paciente</span>(String nombre, String curp, 
+                          String fechaNacimiento, String telefono) {
+        <span class="keyword">this</span>.nombre = nombre;
+        <span class="keyword">this</span>.curp = curp;
+        <span class="keyword">this</span>.fechaNacimiento = fechaNacimiento;
+        <span class="keyword">this</span>.telefono = telefono;
+    }
+    
+    <span class="comment">// Getters y Setters</span>
+    <span class="keyword">public</span> String <span class="function">getNombre</span>() {
+        <span class="keyword">return</span> nombre;
+    }
+    
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">setNombre</span>(String nombre) {
+        <span class="keyword">this</span>.nombre = nombre;
+    }
+    
+    <span class="comment">// Método para mostrar información</span>
+    <span class="keyword">public</span> String <span class="function">toString</span>() {
+        <span class="keyword">return</span> <span class="string">"Paciente: " + nombre + ", CURP: " + curp</span>;
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-block" style="margin-top: 20px">
+            <pre><code><span class="comment">// Ejemplo de herencia - Médico hereda de Personal</span>
+<span class="keyword">public class</span> <span class="function">Personal</span> {
+    <span class="keyword">protected</span> String nombre;
+    <span class="keyword">protected</span> String idEmpleado;
+    
+    <span class="keyword">public</span> <span class="function">Personal</span>(String nombre, String idEmpleado) {
+        <span class="keyword">this</span>.nombre = nombre;
+        <span class="keyword">this</span>.idEmpleado = idEmpleado;
+    }
+}
+
+<span class="keyword">public class</span> <span class="function">Medico</span> <span class="keyword">extends</span> Personal {
+    <span class="keyword">private</span> String especialidad;
+    <span class="keyword">private</span> String cedula;
+    
+    <span class="keyword">public</span> <span class="function">Medico</span>(String nombre, String idEmpleado, 
+                      String especialidad, String cedula) {
+        <span class="keyword">super</span>(nombre, idEmpleado);
+        <span class="keyword">this</span>.especialidad = especialidad;
+        <span class="keyword">this</span>.cedula = cedula;
+    }
+    
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">atenderPaciente</span>(Paciente paciente) {
+        System.out.println(<span class="string">"Dr. " + nombre + " atendiendo a " + 
+                          paciente.getNombre()</span>);
+    }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p><strong>Instituto Tecnológico de Toluca</strong></p>
+        <p>Carrera de Tecnologías de la Información y Comunicaciones</p>
+        <p style="margin-top: 20px">© 2025 ITToluca</p>
+      </div>
+    </footer>
+  </body>
+</html>
+

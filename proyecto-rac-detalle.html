@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAC - Detalle del Proyecto</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #1e3a5f;
+        background-color: #fafafa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: #092140;
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .back-button {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+
+      .back-button:hover {
+        color: #ff6b35;
+      }
+
+      /* Project Detail Section */
+      .project-detail {
+        padding: 40px 20px;
+      }
+
+      .project-header {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-title {
+        font-size: 36px;
+        color: #1e3a5f;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .project-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        background: #1e3a5f;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .project-video {
+        width: 100%;
+        max-width: 800px;
+        margin: 30px auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-video video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .project-description {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .section-title {
+        font-size: 24px;
+        color: #1e3a5f;
+        margin-bottom: 20px;
+        font-weight: 600;
+        border-bottom: 2px solid #ff6b35;
+        padding-bottom: 10px;
+      }
+
+      .project-description p {
+        color: #444;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      .features-list li {
+        padding: 10px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #444;
+        font-size: 16px;
+      }
+
+      .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #ff6b35;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      /* Code Section */
+      .code-section {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 8px;
+        padding: 20px;
+        overflow-x: auto;
+        margin-top: 20px;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .code-block code {
+        color: #d4d4d4;
+      }
+
+      .code-block .keyword {
+        color: #569cd6;
+      }
+
+      .code-block .string {
+        color: #ce9178;
+      }
+
+      .code-block .comment {
+        color: #6a9955;
+      }
+
+      .code-block .function {
+        color: #dcdcaa;
+      }
+
+      /* Tech Stack */
+      .tech-stack {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .tech-item {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .tech-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .tech-item i {
+        font-size: 36px;
+        color: #1e3a5f;
+        margin-bottom: 10px;
+      }
+
+      .tech-item h4 {
+        color: #1e3a5f;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1e3a5f;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      footer p {
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        .project-title {
+          font-size: 28px;
+        }
+
+        .project-header,
+        .project-description,
+        .code-section,
+        .tech-stack {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">Instituto Tecnológico de Toluca</div>
+          <a href="Home.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section class="project-detail">
+      <div class="container">
+        <div class="project-header">
+          <h1 class="project-title">RAC - Reconocimiento de Acceso Controlado</h1>
+          <p class="project-subtitle">
+            Sistema integral de control de acceso RFID y biométrico con interfaz web para la gestión de laboratorios del Instituto Tecnológico
+          </p>
+          <div class="project-tags">
+            <span class="tag">Java</span>
+            <span class="tag">PHP</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">RFID</span>
+            <span class="tag">Biometría</span>
+            <span class="tag">Web</span>
+            <span class="tag">4to-6to Semestre</span>
+          </div>
+          <div class="project-video">
+            <video controls>
+              <source src="assets/media/VideoComercial-RACNew.mp4" type="video/mp4" />
+              Tu navegador no soporta el elemento de video.
+            </video>
+          </div>
+        </div>
+
+        <div class="project-description">
+          <h2 class="section-title">Descripción del Proyecto</h2>
+          <p>
+            RAC (Reconocimiento de Acceso Controlado) es un sistema integral desarrollado para mejorar la seguridad, 
+            gestión del espacio y recursos en los laboratorios del Instituto Tecnológico de Toluca. El sistema combina 
+            tecnología RFID y biométrica para controlar las entradas y salidas de estudiantes de manera eficiente y segura.
+          </p>
+          <p>
+            El proyecto evolucionó a lo largo de varios semestres, incorporando nuevas funcionalidades como una interfaz 
+            web para administración remota, notificaciones de inasistencias, gestión de horarios y supervisión en tiempo real 
+            de las actividades en los laboratorios del Edificio T.
+          </p>
+          <p>
+            Este sistema demuestra la integración de hardware (lectores RFID, sensores biométricos) con software de escritorio 
+            (Java) y aplicaciones web (PHP), conectándose a una base de datos MySQL para el almacenamiento y gestión de información.
+          </p>
+
+          <h3 style="margin-top: 30px; margin-bottom: 15px; color: #1e3a5f">
+            Características principales:
+          </h3>
+          <ul class="features-list">
+            <li>Control de acceso mediante tarjetas RFID</li>
+            <li>Reconocimiento biométrico para mayor seguridad</li>
+            <li>Interfaz web para administración remota</li>
+            <li>Gestión de usuarios, horarios y permisos</li>
+            <li>Registro automático de entradas y salidas</li>
+            <li>Sistema de notificaciones de inasistencias</li>
+            <li>Supervisión en tiempo real de actividades</li>
+            <li>Análisis y reportes de acceso</li>
+            <li>Integración con base de datos MySQL</li>
+            <li>Aplicación de escritorio en Java para control local</li>
+          </ul>
+        </div>
+
+        <div class="tech-stack">
+          <h2 class="section-title">Tecnologías Utilizadas</h2>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <i class="fab fa-java"></i>
+              <h4>Java</h4>
+              <p>Aplicación de escritorio</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-php"></i>
+              <h4>PHP</h4>
+              <p>Backend web</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-database"></i>
+              <h4>MySQL</h4>
+              <p>Base de datos</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-id-card"></i>
+              <h4>RFID</h4>
+              <p>Tecnología de identificación</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-fingerprint"></i>
+              <h4>Biometría</h4>
+              <p>Reconocimiento biométrico</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-html5"></i>
+              <h4>HTML/CSS/JS</h4>
+              <p>Interfaz web</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-section">
+          <h2 class="section-title">Código del Proyecto</h2>
+          <p style="margin-bottom: 20px; color: #444">
+            Ejemplos de código del sistema:
+          </p>
+
+          <div class="code-block">
+            <pre><code><span class="comment">// Java - Clase para manejo de RFID</span>
+<span class="keyword">public class</span> <span class="function">RFIDController</span> {
+    <span class="keyword">private</span> Connection dbConnection;
+    
+    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="function">validarAcceso</span>(String rfidCode) {
+        <span class="keyword">try</span> {
+            String query = <span class="string">"SELECT * FROM estudiantes WHERE rfid = ?"</span>;
+            PreparedStatement stmt = dbConnection.prepareStatement(query);
+            stmt.setString(1, rfidCode);
+            ResultSet rs = stmt.executeQuery();
+            
+            <span class="keyword">if</span> (rs.next()) {
+                <span class="function">registrarAcceso</span>(rs.getInt(<span class="string">"id"</span>));
+                <span class="keyword">return</span> <span class="keyword">true</span>;
+            }
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+        } <span class="keyword">catch</span> (SQLException e) {
+            e.printStackTrace();
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+        }
+    }
+    
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="function">registrarAcceso</span>(<span class="keyword">int</span> estudianteId) {
+        <span class="comment">// Registrar entrada/salida en la base de datos</span>
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-block" style="margin-top: 20px">
+            <pre><code><span class="comment">// PHP - API para consultar accesos</span>
+&lt;?php
+<span class="keyword">header</span>(<span class="string">'Content-Type: application/json'</span>);
+<span class="keyword">require_once</span> <span class="string">'config.php'</span>;
+
+<span class="keyword">if</span> ($_SERVER[<span class="string">'REQUEST_METHOD'</span>] === <span class="string">'GET'</span>) {
+    $conn = <span class="keyword">new</span> mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    
+    <span class="keyword">if</span> ($conn->connect_error) {
+        <span class="keyword">die</span>(<span class="string">"Error de conexión: " . $conn->connect_error</span>);
+    }
+    
+    $query = <span class="string">"SELECT e.nombre, a.fecha, a.tipo_acceso 
+            FROM accesos a 
+            JOIN estudiantes e ON a.estudiante_id = e.id 
+            ORDER BY a.fecha DESC LIMIT 50"</span>;
+    
+    $result = $conn->query($query);
+    $accesos = [];
+    
+    <span class="keyword">while</span> ($row = $result->fetch_assoc()) {
+        $accesos[] = $row;
+    }
+    
+    <span class="keyword">echo</span> json_encode($accesos);
+    $conn->close();
+}
+?&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p><strong>Instituto Tecnológico de Toluca</strong></p>
+        <p>Carrera de Tecnologías de la Información y Comunicaciones</p>
+        <p style="margin-top: 20px">© 2025 ITToluca</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
