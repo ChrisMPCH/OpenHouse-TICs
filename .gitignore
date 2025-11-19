@@ -1,4 +1,4 @@
-# Archivos de video grandes (exceden el límite de GitHub)
+# Archivos de video grandes (subir a servicio externo)
 assets/media/*.mp4
 assets/media/*.mkv
 assets/media/*.mov
